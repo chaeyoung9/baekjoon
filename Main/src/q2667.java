@@ -8,7 +8,6 @@ public class q2667 {
 	static int cnt = 1;
 
 
-
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		String input = sc.nextLine();
