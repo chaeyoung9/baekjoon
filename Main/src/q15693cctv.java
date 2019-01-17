@@ -55,11 +55,15 @@ public class q15693cctv {
 		break;
 
 		case(2): {
-			
 				move(i,j, 1);
 				move(i,j, 3);
 				tempv = check(map);
-			
+				System.arraycopy(temp, 0, map, 0, map.length);
+				move(i,j, 1);
+				move(i,j, 3);
+				if (tempv < check(map)) {
+					System.arraycopy(map, 0, temp, 0, map.length);
+				}
 		}
 		break;
 		
