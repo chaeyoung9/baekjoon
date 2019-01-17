@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+public class q1987_alphabet {
+	
+	static String[][] map;
+	static boolean[][] visited;
+	static int R, C;
+	static int count = 0;
+	
+	public static void main(String args[]) {
+		Scanner sc = new Scanner(System.in);
+		R = Integer.parseInt(sc.next());
+		C = Integer.parseInt(sc.next());
+		map = new String[R][C];
+		
+		for (int i = 0 ; i < R ; i++) {
+			char[] a = sc.next().toCharArray();
+			for (int j = 0 ; j < C ; j++) {
+				map[i][j] = String.valueOf(a[j]);
+			}
+		}
+		
+		
+		dfs(0,0,"");
+		System.out.println(count);
+	}
+	
+	static void dfs(int x , int y, String a) {
+		int[] dx = {1,0,-1,0};
+		int[] dy = {0,1,0,-1};
+		a += map[x][y];
+		count = Math.max(count, a.length());
+		
+		for (int i = 0 ; i < 4 ; i++) {
+			int mx = x + dx[i];
+			int my = y + dy[i];
+			
+			if (mx >= 0 && my >=0 && mx < R && my <C) {
+				if (check(mx,my,a)) {
+					dfs(mx,my,a);
+				}
+			}
+			
+		}
+		
+	}
+	
+	static boolean check(int x, int y , String a) {
+		if (a.contains(map[x][y])) {
+			return false;
+		}
+		return true;
+	}
+}
