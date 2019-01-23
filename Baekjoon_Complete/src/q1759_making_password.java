@@ -28,13 +28,16 @@ public class q1759_making_password {
 		if(index == C) {
 			return;
 		}
+		
 		if (check(input[index]).equals("v")) {
 			search(index+1, vowel +1, consonant, s + input[index]);
 		} else {
 			search(index+1, vowel, consonant + 1, s + input[index]);
 		}
+		
 		search(index+1, vowel, consonant, s);
 	}
+	
 	
 	static String check(String s) {
 		if (s.equals("a") || s.equals("e") || s.equals("i") || s.equals("o") || s.equals("u") ) {
@@ -42,6 +45,7 @@ public class q1759_making_password {
 		} else {
 			return "c";
 		}
+		
 	}
 	
 
