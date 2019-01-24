@@ -70,4 +70,8 @@ public class q7562_knight {
 	}
 	
 	
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> refs/remotes/origin/master
