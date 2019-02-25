@@ -6,7 +6,8 @@ public class s2381_microbe {
 	static Queue<microbe> m = new LinkedList<microbe>();
 	static Queue<microbe> temp = new LinkedList<microbe>();
 	static Queue<point> p = new LinkedList<point>();
-	static int N, tot = 0, map[][], dir[][];
+	static int N, tot = 0, map[][], dir[][], max[][];
+	
 	public static void main(String args[]) {
 		Scanner sc = new Scanner(System.in);
 		int T = sc.nextInt();
@@ -15,8 +16,7 @@ public class s2381_microbe {
 			N = sc.nextInt();
 			int M = sc.nextInt();
 			int K = sc.nextInt();
-			map = new int[N][N];
-			dir = new int[N][N];
+
 			
 			//시간별
 			for (int j = 0 ; j < K; j++) {
@@ -30,8 +30,8 @@ public class s2381_microbe {
 			for (int j = 0 ; j < M; j++) {
 				map = new int[N][N];
 				dir = new int[N][N];
+				max = new int[N][N];
 				
-				System.out.println(j);
 				tot = 0;
 				int msize = m.size();
 				for (int k = 0 ; k < msize; k++) {
@@ -41,12 +41,6 @@ public class s2381_microbe {
 				}
 				
 				int psize = p.size();
-				java.util.Arrays.sort(map, new java.util.Comparator<int[]>() {
-				    public int compare(int[] a, int[] b) {
-				        return Double.compare(a[0], b[0]);
-				    }
-				});
-				
 				
 				for (int k = 0 ; k < psize; k++) {
 					point P = p.poll();
@@ -55,7 +49,7 @@ public class s2381_microbe {
 					tot += map[P.x][P.y]; 
 				}
 			}
-
+			m.clear();
 			ans[i] = tot;
 		}
 		
@@ -72,7 +66,6 @@ public class s2381_microbe {
 		int N = num;
 		int D = d;
 		
-//		System.out.format("X:%d Y:%d D:%d N:%d\n", X,Y,D,N);
 		switch (D) { //1-상  2-하  3-좌  4-우
 		case 1:
 			if (deadline(x-1,y)) {
@@ -109,12 +102,14 @@ public class s2381_microbe {
 		if (map[X][Y] == 0) {
 			map[X][Y] = N;
 			dir[X][Y] = D;
+			max[X][Y] = N;
 			p.add(new point(X,Y));
 			return;
 		}
 		if (map[X][Y] != 0) {
-			if (map[X][Y] < N) {
+			if (max[X][Y] < N) {
 				dir[X][Y] = D;
+				max[X][Y] = N;
 			} 
 			map[X][Y] += N;
 			return;
