@@ -1,25 +1,24 @@
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
 
 public class q4811_pill {
 	
-	static HashSet<String> hs = new HashSet<String>();
-	static int tot = 0;
 	static long[][] dp;
+	static Queue<Long> q = new LinkedList<Long>();
+	
 	public static void main(String args[]) {
 		Scanner sc = new Scanner(System.in);
-//		while (true) {
-			int N = sc.nextInt();
-			dp = new long[N+1][N+1];
-//			if (N == 0) break;
-			
-			System.out.println(pill(N,0));
-			for (long a[] : dp) {
-				System.out.println(Arrays.toString(a));
+
+			while (true) {
+				int N = sc.nextInt();
+				if (N ==0) break;
+				dp = new long[N+1][N+1];
+				q.add(pill(N,0));
+				dp = new long[N+1][N+1];
 			}
-//		}
-		
+			
+			while(!q.isEmpty()) {
+				System.out.println(q.poll());
+			}
 	}
 	
 	static long pill(int W, int H) {
@@ -32,12 +31,11 @@ public class q4811_pill {
 		} else {
 			long sum = 0;
 			sum += pill(W-1, H+1);
-			if (H >= 1) 
+			if (H > 0) {
 				sum += pill(W, H-1);
+			}
 			dp[W][H] = sum;
 			return sum;
 		}
 	}
-	
-	
 }
