@@ -65,6 +65,8 @@ public class q11559_puyopuyo{
 		}
 	}
 	
+	
+	
 	static void search(int x, int y, String s, Queue<point> q) {
 		int dx[] = {0,1,0,-1};
 		int dy[] = {1,0,-1,0};
